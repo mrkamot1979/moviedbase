@@ -31,6 +31,7 @@ def print_movie_list(heading, movies):
     print("---- ¥n")
 
 def prompt_watch_movie():
+    username = input("Enter username: ")
     movie_title = input("Enter movie title you have watched: ")
     database.watch_movie(movie_title)
 

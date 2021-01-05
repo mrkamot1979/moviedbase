@@ -43,8 +43,9 @@ def get_movies(upcoming=False):
     return cursor.fetchall()
     connection.commit()
 
-def watch_movie(title):
-    connection.execute(SET_MOVIE_WATCHED, (title,))
+def watch_movie(username, title): #once a movie is watched, it is deleted in the movie database and then the details are entered onto the "watched" database
+    connection.execute(DELETE_MOVIE, (title,))
+    connection.execute(INSERT_WATCHED_MOVIE, (username, title))
     connection.commit()
 
 def get_watched_movies():
