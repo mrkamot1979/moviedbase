@@ -48,7 +48,7 @@ def watch_movie(username, title): #once a movie is watched, it is deleted in the
     connection.execute(INSERT_WATCHED_MOVIE, (username, title))
     connection.commit()
 
-def get_watched_movies():
+def get_watched_movies(username):
     cursor = connection.cursor()
-    cursor.execute(SELECT_WATCHED_MOVIES)
+    cursor.execute(SELECT_WATCHED_MOVIES, (username, ))
     return cursor.fetchall()
