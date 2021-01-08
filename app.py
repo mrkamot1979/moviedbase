@@ -42,9 +42,6 @@ def print_watched_movie_list(username, movies):
 
 
 
-
-
-
 while (user_input := input(menu)) != "6":
     if user_input == "1":
         prompt_add_movie()       
