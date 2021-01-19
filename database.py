@@ -2,14 +2,22 @@ import sqlite3, datetime
 
 
 CREATE_MOVIES_TABLE = """CREATE TABLE IF NOT EXISTS movies (
+    id INTEGER PRIMARY KEY,
     title TEXT,
     release_timestamp REAL
 );
 """
 
-CREATE_WATCHLIST_TABLE = """CREATE TABLE IF NOT EXISTS watched (
-    watcher_name TEXT,
-    title TEXT
+CREATE_USERS_TABLE = """CREATE TABLE IF NOT EXISTS users (
+    username TEXT PRIMARY KEY
+);
+"""
+
+CREATE_WATCHED_TABLE = """CREATE TABLE IF NOT EXISTS watched (
+    user_username TEXT,
+    movie_id INTEGER
+    FOREIGN KEY (user_username) REFERENCES users(username),
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
     );
 """
 
@@ -26,7 +34,8 @@ connection = sqlite3.connect("data.db")
 
 def create_tables():
     connection.execute(CREATE_MOVIES_TABLE)
-    connection.execute(CREATE_WATCHLIST_TABLE)
+    connection.execute(CREATE_USERS_TABLE)
+    connection.execute(CREATE_WATCHED_TABLE)
     connection.commit()
 
 def add_movie(title, release_timestamp):
