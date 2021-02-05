@@ -15,10 +15,10 @@ CREATE_USERS_TABLE = """CREATE TABLE IF NOT EXISTS users (
 
 CREATE_WATCHED_TABLE = """CREATE TABLE IF NOT EXISTS watched (
     user_username TEXT,
-    movie_id INTEGER
+    movie_id INTEGER,
     FOREIGN KEY (user_username) REFERENCES users(username),
     FOREIGN KEY (movie_id) REFERENCES movies(id)
-    );
+);
 """
 
 INSERT_MOVIES = "INSERT INTO movies (title, release_timestamp) VALUES (?, ?);"
